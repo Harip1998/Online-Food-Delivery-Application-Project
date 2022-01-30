@@ -7,7 +7,7 @@ module.exports = function validateRegisterInput(data) {
   // Convert empty fields to an empty string so we can use validator functions
   data.name = !isEmpty(data.name) ? data.name : "";
   data.email = !isEmpty(data.email) ? data.email : "";
-  data.mobile = !isEmpty(data.mobile) ? data.mobile : "";
+  // data.mobile = !isEmpty(data.mobile) ? data.mobile : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : "";
 
@@ -23,12 +23,12 @@ module.exports = function validateRegisterInput(data) {
     errors.email = "Email is invalid";
   }
 
-  if (Validator.isEmpty(data.mobile)) {
-    errors.mobile = "mobile field is required";
-  }
-  if (!Validator.isLength(data.mobile, { min: 10, max: 10 })) {
-    errors.mobile = "Mobile number must be 10 digit ";
-  }
+  // if (Validator.isEmpty(data.mobile)) {
+  //   errors.mobile = "mobile field is required";
+  // }
+  // if (!Validator.isLength(data.mobile, { min: 10, max: 10 })) {
+  //   errors.mobile = "Mobile number must be 10 digit ";
+  // }
   // Password checks
   if (Validator.isEmpty(data.password)) {
     errors.password = "Password field is required";

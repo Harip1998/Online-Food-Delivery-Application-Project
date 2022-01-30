@@ -34,9 +34,21 @@ class Register extends Component {
       email.length > 5 &&
       password.length > 4 &&
       password2.length > 4;
+      
+      const handleSubmit = (evt) => {
+        if (!canBeSubmitted()) {
+          evt.preventDefault();
+          return;
+        }
+        alert(`Signed up with email: ${email} password: ${password}`);
+      };
+    
+      const canBeSubmitted = () => {
+        return email.length > 5 && password.length > 4;
+      };
     return (
       <div className="reg">
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
           <h3 className="head">SignUp</h3>
 
           <div className="form-group">
