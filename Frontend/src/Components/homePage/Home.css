@@ -1,0 +1,84 @@
+/*----------Home File---------*/
+.low-res-container {
+  background-image: url(../../assets/images/image1.jpg);
+  width: 100vmax;
+  height: 100vh;
+}
+.signup {
+  color: white;
+}
+.login {
+  color: white;
+}
+.zom {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 17%;
+}
+.s {
+  text-align: center;
+  color: white;
+}
+
+.center {
+  margin: 0 auto;
+}
+.srch {
+  color: red;
+}
+
+/*-------------Signup && Login File ----------*/
+.form {
+  margin-top: 30px;
+  margin-left: 550px;
+  margin-right: 550px;
+  border: solid 1px;
+  border-radius: 25px;
+}
+.head {
+  text-align: center;
+  color: rgb(37, 34, 34);
+}
+
+#button {
+  color: rgba(0, 0, 0, 0.877);
+}
+/*----------Cart_Item File---------------*/
+#cart_det {
+  margin-top: 10px;
+  width: 830px;
+
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/*-------------Cart Fille ---------------*/
+#full {
+  width: 1530px;
+  height: 700px;
+  background-color: sandybrown;
+}
+#cart_border {
+  margin-top: 10px;
+  width: 850px;
+  background-color: seashell;
+}
+#ab {
+  margin-left: 330px;
+}
+
+#place_order {
+  margin-left: 320px;
+}
+.p_o {
+  color: rgb(211, 24, 17);
+}
+#ce {
+  margin-top: 200px;
+  margin-left: 350px;
+}
+#c_e {
+  color: green;
+}

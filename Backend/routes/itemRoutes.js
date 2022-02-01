@@ -13,7 +13,7 @@ app.get('/item', async (req, res) => {
 });
 
 app.post('/item', async (req, res) => {
-    const item = new itemModel(req.body);
+    const chicken = new itemModel(req.body);
   
     try {
       await item.save();

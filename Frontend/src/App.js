@@ -1,22 +1,17 @@
-import React from 'react';
-import { BrowserRouter,  } from 'react-router-dom'
-import './App.css';
-import Restaurant_Nav from "./Components/Restaurant_Page/Restaurant_Nav";
-import Home_Nav from "./Components/Home_Page/Home_Nav";
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import RestaurantNav from "./Components/restaurantPage/RestaurantNav";
+import HomeNav from "./Components/homePage/HomeNav";
 
-class App extends React.Component{
-  
-  render(){
-  return (
-    <BrowserRouter>
+function App (){
+    return (
+      <BrowserRouter>
         <div className="App">
-           <switch>
-              <Home_Nav />
-              <Restaurant_Nav /> 
-           </switch>
+          <HomeNav />
+          <RestaurantNav />
         </div>
-  </BrowserRouter>
-  );
-}
+      </BrowserRouter>
+    );
 }
 export default App;
