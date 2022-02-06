@@ -1,58 +1,38 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { NavLink } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 import "./Home.css";
+import { Button } from "@material-ui/core";
 
 function Home() {
   return (
-    <div className="low-res-container">
-      <div className="row">
-        <div className="col-sm-8"></div>
-        <div className="col-sm-1">
-          <div className="navbar-header">
+    <div className="home-page-main-container">
+      <div className="home-page-header">
+        <Grid container spacing={0}>
+          <Grid item sx={12} sm={12}>
             <NavLink className="navbar-brand" to="/login">
-              <h5 className="login">Login</h5>
+              <p className="login-btn">Log in</p>
             </NavLink>
-          </div>
-        </div>
-        <div className="col-sm-1">
-          <div className="navbar-header">
-            <NavLink className="navbar-brand" to="/signup">
-              <h5 className="login">Signup</h5>
-            </NavLink>
-          </div>
-        </div>
-        <div className="col-sm-2"></div>
+          </Grid>
+        </Grid>
       </div>
-      <div className="row">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-      </div>
-      <div className="row">
+      <div className="home-page-searchbar-container">
         <img
           src="https://b.zmtcdn.com/web_assets/8313a97515fcb0447d2d77c276532a511583262271.png"
-          class="zom"
+          class="zomato-img"
           alt="img"
           role="presentation"
         />
       </div>
-      <br></br>
-      <h3 className="s">Search food Items or City</h3>
-      <br></br>
-      <div className="row">
-        <div class="center">
-          <input
-            type="text"
-            placeholder="Search for restuarant or dish"
-            name="fname"
-            size="70"
-            height="45"
-          ></input>
-          <button className="srch">Search</button>
-        </div>
+      <h3 className="search-bar-title">Search food Items or City</h3>
+      <div className="home-page-searchbar">
+        <input
+          type="text"
+          placeholder="Search for restuarant or dish"
+          className="search-bar"
+        />
+        <Button style={{color:"black",backgroundColor:"red",height:"2.8em", textDecoration:"none",marginBottom:".4em"}}>Search</Button>
       </div>
     </div>
   );

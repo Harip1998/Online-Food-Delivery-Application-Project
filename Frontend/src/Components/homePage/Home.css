@@ -1,5 +1,5 @@
 /*----------Home File---------*/
-.low-res-container {
+.home-page-main-container {
   background-image: url(../../assets/images/image1.jpg);
   width: 100vmax;
   height: 100vh;
@@ -7,26 +7,41 @@
 .signup {
   color: white;
 }
-.login {
+.login-btn {
   color: white;
+  margin-left: 50em;
+  font-size: x-large;
 }
-.zom {
+.home-page-searchbar-container{
+   margin-top: 5.5em;
+}
+.zomato-img {
   display: block;
   justify-content: center;
   align-items: center;
   margin: auto;
   width: 17%;
 }
-.s {
+.search-bar-title {
   text-align: center;
   color: white;
+  margin-top: .5em;
 }
-
-.center {
-  margin: 0 auto;
+.home-page-searchbar{
+  text-align: center;
+  margin-top: 1.5em;
 }
-.srch {
-  color: red;
+.search-bar{
+  width: 30em;
+  height: 2.5em;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.srch-btn {
+  background-color:red;
+  color: white;
+  text-decoration: none;
 }
 
 /*-------------Signup && Login File ----------*/
