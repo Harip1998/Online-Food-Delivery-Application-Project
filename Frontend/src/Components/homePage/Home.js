@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-// import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "./Home.css";
 import { Button } from "@material-ui/core";
@@ -10,25 +10,20 @@ function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
 
   const clickedOnProceed = () => {
-    // if (!dirty) {
-    //   sbmtToinspAssignStaff();
-    //   setClick(true);
-    // }
-
     setdeletemodal(false);
   };
+
   return (
     <div className="home-page-main-container">
-      <div className="home-page-header">
+      <div>
         <Grid container spacing={0}>
-          <Grid item sx={12} sm={12}>
-            {/* <NavLink className="navbar-brand" to="/login">
-              <p className="login-btn">Log in</p>
-            </NavLink> */}
-            <Button className="navbar-brand" onClick={() => setdeletemodal(true)}>
-              {" "}
-              <p className="login-btn">Log in</p>
-            </Button>
+          <Grid item sx={12} sm={10}></Grid>
+          <Grid item sx={12} sm={2}>
+            <Link className="navbar-brand">
+              <p onClick={() => setdeletemodal(true)} className="login-btn">
+                Log in
+              </p>
+            </Link>
           </Grid>
         </Grid>
       </div>
@@ -64,8 +59,6 @@ function Home() {
         DelModel={clickedOnProceed}
         close={() => {
           setdeletemodal(false);
-          // setDirty(false);
-          // setDiscard(true);
         }}
         title={"Confirm"}
       />

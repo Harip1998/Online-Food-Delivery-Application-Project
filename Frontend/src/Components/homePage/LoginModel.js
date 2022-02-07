@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Redirect,Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./Home.css";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 // import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
@@ -46,10 +46,8 @@ function LoginModel(props) {
     return email.length > 5 && password.length > 4;
   };
 
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
+ 
   const [islogin, setislogin] = useState(false);
-  //   const [successmsg, setSuccessmsg] = useState("");
   const [signupflag, setSignupFlag] = useState(false);
 
   console.log("signupflag", signupflag);
@@ -94,7 +92,7 @@ function LoginModel(props) {
   const loginCanBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
-  // var auth = JSON.parse(localStorage.getItem("auth"));
+  
   useEffect(() => {
     if (islogin) {
       return <Redirect to="/restaurant-page" />;
@@ -162,10 +160,12 @@ function LoginModel(props) {
               <span className="navbar-brand">SignUp</span>
             </button>
             <div className="msg-signup-btn">
-              Already registered
-              <Button onClick={() => setSignupFlag(false)}>
-                <p className="signup-btn">Login</p>
-              </Button>
+              Already registered?
+              <Link onClick={() => setSignupFlag(false)}>
+                <p className="navbar-brand" id="singup-login-btn">
+                  Login
+                </p>
+              </Link>
             </div>
           </form>
         ) : (
@@ -221,10 +221,12 @@ function LoginModel(props) {
               </button>
             </Link>
             <div className="msg-signup-btn">
-              <p>Don't have account</p>
-              <Button onClick={() => setSignupFlag(true)}>
-                <p className="signup-btn">SignUp</p>
-              </Button>
+              <p>Don't have account?</p>
+              <Link onClick={() => setSignupFlag(true)}>
+                <p className="navbar-brand" id="singup-login-btn">
+                  SignUp
+                </p>
+              </Link>
             </div>
           </form>
         )}
