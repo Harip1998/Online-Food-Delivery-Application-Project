@@ -1,19 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "./Home.css";
 import { Button } from "@material-ui/core";
+import LoginModel from "./LoginModel";
 
 function Home() {
+  const [deletemodal, setdeletemodal] = useState(false);
+
+  const clickedOnProceed = () => {
+    // if (!dirty) {
+    //   sbmtToinspAssignStaff();
+    //   setClick(true);
+    // }
+
+    setdeletemodal(false);
+  };
   return (
     <div className="home-page-main-container">
       <div className="home-page-header">
         <Grid container spacing={0}>
           <Grid item sx={12} sm={12}>
-            <NavLink className="navbar-brand" to="/login">
+            {/* <NavLink className="navbar-brand" to="/login">
               <p className="login-btn">Log in</p>
-            </NavLink>
+            </NavLink> */}
+            <Button className="navbar-brand" onClick={() => setdeletemodal(true)}>
+              {" "}
+              <p className="login-btn">Log in</p>
+            </Button>
           </Grid>
         </Grid>
       </div>
@@ -32,8 +47,28 @@ function Home() {
           placeholder="Search for restuarant or dish"
           className="search-bar"
         />
-        <Button style={{color:"black",backgroundColor:"red",height:"2.8em", textDecoration:"none",marginBottom:".4em"}}>Search</Button>
+        <Button
+          style={{
+            color: "black",
+            backgroundColor: "red",
+            height: "2.8em",
+            textDecoration: "none",
+            marginBottom: ".4em",
+          }}
+        >
+          Search
+        </Button>
       </div>
+      <LoginModel
+        open={deletemodal}
+        DelModel={clickedOnProceed}
+        close={() => {
+          setdeletemodal(false);
+          // setDirty(false);
+          // setDiscard(true);
+        }}
+        title={"Confirm"}
+      />
     </div>
   );
 }
