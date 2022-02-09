@@ -6,12 +6,16 @@ import "./Home.css";
 // import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
+  let auth = localStorage.getItem("auth");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [islogin, setislogin] = useState(false);
+  const [signupflag, setSignupFlag] = useState(false);
   // const [isRegister, setisRegister] = useState(false);
 
+  /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
       method: "POST",
@@ -34,9 +38,9 @@ function LoginModel(props) {
   //   password.length > 4 &&
   //   password2.length > 4;
 
-  const singupHandleSubmit = (evt) => {
+  const singupHandleSubmit = (e) => {
     if (!signupCanBeSubmitted()) {
-      evt.preventDefault();
+      e.preventDefault();
       return;
     }
     alert(`Signed up with email: ${email} password: ${password}`);
@@ -45,18 +49,13 @@ function LoginModel(props) {
   const signupCanBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
-
- 
-  const [islogin, setislogin] = useState(false);
-  const [signupflag, setSignupFlag] = useState(false);
-
-  console.log("signupflag", signupflag);
   const sendProceed = () => {
     props.DelModel({
       proceed: true,
     });
   };
 
+  /* ----- Function to login ----- */
   const login = () => {
     fetch("http://localhost:4001/users/login", {
       method: "POST",
@@ -74,16 +73,15 @@ function LoginModel(props) {
         console.log("Resss", res);
         if (res.success) {
           setislogin(true);
-          //   setSuccessmsg(res.message);
           alert(res.message);
         }
       });
     });
   };
 
-  const loginHandleSubmit = (evt) => {
+  const loginHandleSubmit = (e) => {
     if (!loginCanBeSubmitted()) {
-      evt.preventDefault();
+      e.preventDefault();
       return;
     }
     alert(`Signed up with email: ${email} password: ${password}`);
@@ -92,15 +90,17 @@ function LoginModel(props) {
   const loginCanBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
-  
-  useEffect(() => {
-    if (islogin) {
-      return <Redirect to="/restaurant-page" />;
-    }
-  }, [islogin]);
+
+ 
 
   const signupisEnabled = signupCanBeSubmitted();
   const LoginisEnabled = loginCanBeSubmitted();
+
+ useEffect(() => {
+    if (islogin) {
+      return <Redirect to="/restaurant-page" />;
+    }
+  }, [islogin, auth]);
 
   return (
     <div>
@@ -155,7 +155,10 @@ function LoginModel(props) {
               type="submit"
               disabled={!signupisEnabled}
               className="btn btn-dark btn-lg btn-block"
-              onClick={() => register()}
+              onClick={() => {
+                register();
+                setSignupFlag(false);
+              }}
             >
               <span className="navbar-brand">SignUp</span>
             </button>
