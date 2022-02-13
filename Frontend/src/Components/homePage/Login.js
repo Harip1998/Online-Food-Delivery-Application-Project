@@ -47,7 +47,6 @@
 //   // var auth = JSON.parse(localStorage.getItem("auth"));
 //   if (islogin) {
 //     alert(successmsg);
-//     return <Redirect to="/restaurant-page" />;
 //   }
 //   const isEnabled = canBeSubmitted();
 

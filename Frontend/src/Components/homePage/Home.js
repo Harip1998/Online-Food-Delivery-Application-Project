@@ -8,10 +8,15 @@ import LoginModel from "./LoginModel";
 
 function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
-
+  const [login, setLogin] = useState(false);
   const clickedOnProceed = () => {
     setdeletemodal(false);
   };
+  // useEffect(() => {
+  //   if (login) {
+  //     return <Redirect to="/restaurant-page" />;
+  //   }
+  // }, [login]);
 
   return (
     <div className="home-page-main-container">
@@ -56,6 +61,7 @@ function Home() {
       </div>
       <LoginModel
         open={deletemodal}
+        Login={setLogin}
         DelModel={clickedOnProceed}
         close={() => {
           setdeletemodal(false);

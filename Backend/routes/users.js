@@ -9,10 +9,11 @@ const validateLoginInput = require("../validation/login");
 const User = require("../models/User");
 
 router.post("/register", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(200).json(errors);
   }
 
   User.findOne({ email: req.body.email }).then((user) => {
@@ -24,7 +25,7 @@ router.post("/register", (req, res) => {
         email: req.body.email,
         password: req.body.password,
       });
-
+      
       // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -33,17 +34,18 @@ router.post("/register", (req, res) => {
           newUser
             .save()
             .then((user) => {
-              // console.log("user", user);
-              // user.json({
-              //   success: true,
-              //   token: "Bearer " + token,
-              //   message: "Register successfully.",
-              // });
+               console.log("user", user);            
               return user;
             })
             .catch((err) => console.log(err));
         });
       });
+      return res
+        .status(201)
+        .json({
+          success: true,
+          message: "Registration successfully.",
+        });
     }
   });
 });
@@ -78,6 +80,7 @@ router.post("/login", (req, res) => {
               success: true,
               token: "Bearer " + token,
               message: "Login successfully.",
+              userDetails: { name: user.name, email: user.email },
             });
           }
         );

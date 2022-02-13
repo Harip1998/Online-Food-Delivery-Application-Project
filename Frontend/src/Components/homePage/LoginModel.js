@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Redirect, Link } from "react-router-dom";
+import {Link,Redirect } from "react-router-dom";
 import "./Home.css";
 // import { Button } from "@material-ui/core";
 // import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
-  let auth = localStorage.getItem("auth");
+  const { DelModel, open, close, Login } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [islogin, setislogin] = useState(false);
+  const [islogin, setIslogin] = useState(false);
   const [signupflag, setSignupFlag] = useState(false);
   // const [isRegister, setisRegister] = useState(false);
 
+  const sendProceed = () => {
+    DelModel({
+      proceed: true,
+    });
+  };
   /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
@@ -26,8 +31,7 @@ function LoginModel(props) {
       body: JSON.stringify({ name, email, password, password2 }),
     }).then((result) => {
       result.json().then((res) => {
-        console.log("Resss", res);
-        localStorage.setItem("auth", JSON.stringify(res.token));
+        // localStorage.setItem("auth", JSON.stringify(res.token));
       });
     });
   };
@@ -49,11 +53,8 @@ function LoginModel(props) {
   const signupCanBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
-  const sendProceed = () => {
-    props.DelModel({
-      proceed: true,
-    });
-  };
+
+  const signupisEnabled = signupCanBeSubmitted();
 
   /* ----- Function to login ----- */
   const login = () => {
@@ -70,41 +71,39 @@ function LoginModel(props) {
     }).then((result) => {
       result.json().then((res) => {
         localStorage.setItem("auth", JSON.stringify(res.token));
-        console.log("Resss", res);
+        localStorage.setItem("userDetails", JSON.stringify(res.userDetails));
         if (res.success) {
-          setislogin(true);
+          setIslogin(true);
           alert(res.message);
         }
       });
     });
   };
-
   const loginHandleSubmit = (e) => {
     if (!loginCanBeSubmitted()) {
       e.preventDefault();
       return;
     }
-    alert(`Signed up with email: ${email} password: ${password}`);
   };
-
   const loginCanBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
-
- 
-
-  const signupisEnabled = signupCanBeSubmitted();
   const LoginisEnabled = loginCanBeSubmitted();
 
- useEffect(() => {
+  // useEffect(() => {
+  //   // if (islogin) {
+  //     Login(islogin);
+  //   // }
+  // }, [islogin]);
+
+  useEffect(() => {
     if (islogin) {
       return <Redirect to="/restaurant-page" />;
     }
-  }, [islogin, auth]);
-
+  }, [islogin]);
   return (
     <div>
-      <StyledDialog open={props.open} onClose={props.close}>
+      <StyledDialog open={open} onClose={close}>
         {signupflag ? (
           <form
             style={{ width: "25em", height: "35em", padding: "2em" }}
@@ -210,19 +209,19 @@ function LoginModel(props) {
               </div>
             </div>
 
-            <Link to="/restaurant-page">
+            {/* <Link> */}
               <button
                 type="submit"
                 disabled={!LoginisEnabled}
                 className="btn btn-dark btn-lg btn-block"
                 onClick={() => {
                   login();
-                  sendProceed();
+                   sendProceed();
                 }}
               >
                 <span className="navbar-brand">Login</span>
               </button>
-            </Link>
+            {/* </Link> */}
             <div className="msg-signup-btn">
               <p>Don't have account?</p>
               <Link onClick={() => setSignupFlag(true)}>
