@@ -8,7 +8,6 @@ function HomeNav() {
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
-          {/* <Route path="/home" component={Home} /> */}
         </Switch>
       </div>
     );

@@ -6,13 +6,10 @@ import Cart from "../cartPage/Cart";
 import Restaurant from "./Restaurant";
 import "./RestaurantNav.css";
 import Private from "../Private";
-import Register from "../homePage/Register";
 
 function RestaurantNav() {
   return (
     <div>
-      {/* <Route path="/login" component={Login} /> */}
-      <Route path="/signup" component={Register} />
       <Route path="/cart" component={Cart} />
       <Switch>
         <Route path="/restaurant-page">
