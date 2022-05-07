@@ -9,6 +9,8 @@ import LoginSignUpModel from "./LoginSignUpModel";
 function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
   const [openRegModel, setopenRegModel] = useState(false);
+  const [openLoginModel, setopenLoginModel] = useState(false);
+
   const clickedOnProceed = () => {
     setdeletemodal(false);
   };
@@ -22,6 +24,7 @@ function Home() {
             <Link className="navbar-brand">
               <p
                 onClick={() => {
+                  setopenLoginModel(true);
                   setdeletemodal(true);
                 }}
                 className="signUp-login-btn"
@@ -75,6 +78,9 @@ function Home() {
       <LoginSignUpModel
         open={deletemodal}
         OpenRegModel={openRegModel}
+        OpenLoginModel={openLoginModel}
+        SetopenRegModel={setopenRegModel}
+        SetopenLoginModel={setopenLoginModel}
         DelModel={clickedOnProceed}
         close={() => {
           setdeletemodal(false);

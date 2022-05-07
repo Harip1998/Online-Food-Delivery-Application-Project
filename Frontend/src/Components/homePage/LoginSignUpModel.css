@@ -1,13 +1,18 @@
+.cross-icon{
+  width: 100%;
+  text-align: end;
+  padding: .5em 1em;
+}
 .signUp-form {
-  width: 25em;
-  height: 35em;
-  padding: 2em;
+  width: 27em;
+  height: 33em;
+  padding: 0em 2em;
 }
 
 .login-form {
-  width: 25em;
-  height: 29em;
-  padding: 2em;
+  width: 27em;
+  height: 28em;
+  padding: 0em 2em;
 }
 #singup-login-btn {
   margin-top: -0.4em;

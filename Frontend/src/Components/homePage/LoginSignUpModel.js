@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledDialog } from "./LoginModel.styled";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import "./LoginSignUpModel.css";
-// import { Button } from "@material-ui/core";
-// import { ImCross } from "react-icons/im";
+import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
-  const { open, close, OpenRegModel } = props;
+  const {
+    open,
+    close,
+    OpenRegModel,
+    OpenLoginModel,
+    SetopenRegModel,
+    SetopenLoginModel,
+  } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [signupflag, setSignupFlag] = useState(false);
 
-  useEffect(() => {
-    setSignupFlag(OpenRegModel);
-  }, [OpenRegModel]);
   /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
@@ -95,131 +97,158 @@ function LoginModel(props) {
         open={open}
         onClose={() => {
           close();
-          setSignupFlag(!signupflag);
+          SetopenRegModel(false);
+          SetopenLoginModel(false);
         }}
       >
-        {signupflag ? (
-          <div className="signUp-form">
-            <form onSubmit={singupHandleSubmit}>
-              <h3 className="head">SignUp</h3>
-              <div className="form-group">
-                <label>First name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Enter Name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Confirm password"
-                  onChange={(e) => setPassword2(e.target.value)}
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={!signupisEnabled}
-                className="signUp-login-submit-btn"
-                onClick={() => {
-                  register();
-                  setSignupFlag(false);
-                }}
-              >
-                <span className="navbar-brand">SignUp</span>
-              </button>
-              <div className="msg-signup-btn">
-                Already registered?
-                <Link onClick={() => setSignupFlag(false)}>
-                  <p className="navbar-brand" id="singup-login-btn">
-                    Login
-                  </p>
-                </Link>
-              </div>
-            </form>
-          </div>
-        ) : (
-          <div className="login-form">
-            <form onSubmit={handleSubmit}>
-              <h3 className="head">Log in</h3>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Enter email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Enter password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <div className="custom-control custom-checkbox">
+        <div className="cross-icon">
+          <ImCross
+            onClick={() => {
+              close();
+              SetopenRegModel(false);
+              SetopenLoginModel(false);
+            }}
+            style={{ cursor: "pointer" }}
+          />
+        </div>
+        {OpenRegModel && (
+          <>
+            <div className="signUp-form">
+              <form onSubmit={singupHandleSubmit}>
+                <h3 className="head">SignUp</h3>
+                <div className="form-group">
+                  <label>First name</label>
                   <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="customCheck1"
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter Name"
+                    onChange={(e) => setName(e.target.value)}
                   />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="customCheck1"
-                  >
-                    Remember me
-                  </label>
                 </div>
-              </div>
 
-              <Link to="/restaurant-page">
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter Email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Confirm password"
+                    onChange={(e) => setPassword2(e.target.value)}
+                  />
+                </div>
+
                 <button
                   type="submit"
-                  disabled={!isEnabled}
+                  disabled={!signupisEnabled}
                   className="signUp-login-submit-btn"
-                  onClick={() => login()}
+                  onClick={() => {
+                    register();
+                    SetopenLoginModel(true);
+                    SetopenRegModel(false);
+                  }}
                 >
-                  <span className="navbar-brand">Login</span>
+                  <span className="navbar-brand">SignUp</span>
                 </button>
-              </Link>
-              <div className="msg-signup-btn">
-                <p>Don't have account?</p>
-                <Link onClick={() => setSignupFlag(true)}>
-                  <p className="navbar-brand" id="singup-login-btn">
-                    SignUp
-                  </p>
+                <div className="msg-signup-btn">
+                  Already registered?
+                  <Link
+                    onClick={() => {
+                      SetopenLoginModel(true);
+                      SetopenRegModel(false);
+                    }}
+                  >
+                    <p className="navbar-brand" id="singup-login-btn">
+                      Login
+                    </p>
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </>
+        )}
+        {OpenLoginModel && (
+          <>
+            <div className="login-form">
+              <form onSubmit={handleSubmit}>
+                <h3 className="head">Log in</h3>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+                <div className="form-group">
+                  <div className="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      className="custom-control-input"
+                      id="customCheck1"
+                    />
+                    <label
+                      className="custom-control-label"
+                      htmlFor="customCheck1"
+                    >
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+
+                <Link to="/restaurant-page">
+                  <button
+                    type="submit"
+                    disabled={!isEnabled}
+                    className="signUp-login-submit-btn"
+                    onClick={() => login()}
+                  >
+                    <span className="navbar-brand">Login</span>
+                  </button>
                 </Link>
-              </div>
-            </form>
-          </div>
+                <div className="msg-signup-btn">
+                  <p>Don't have account?</p>
+                  <Link
+                    onClick={() => {
+                      SetopenLoginModel(false);
+                      SetopenRegModel(true);
+                    }}
+                  >
+                    <p className="navbar-brand" id="singup-login-btn">
+                      SignUp
+                    </p>
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </>
         )}
       </StyledDialog>
     </div>
