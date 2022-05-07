@@ -8,7 +8,6 @@ import LoginModel from "./LoginModel";
 
 function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
-  const [login, setLogin] = useState(false);
   const clickedOnProceed = () => {
     setdeletemodal(false);
   };
@@ -61,7 +60,6 @@ function Home() {
       </div>
       <LoginModel
         open={deletemodal}
-        Login={setLogin}
         DelModel={clickedOnProceed}
         close={() => {
           setdeletemodal(false);

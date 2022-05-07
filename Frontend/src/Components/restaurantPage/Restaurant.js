@@ -7,9 +7,6 @@ import Search from "./Search";
 import FoodReducer from "../../Reducers/FoodReducer";
 
 function Restaurant(props) {
-  let userDetails = JSON.parse(localStorage.getItem("userDetails"))
-  // console.log("userDetails",userDetails.name);
-
   const removeStorage = () => {
     localStorage.clear();
   };

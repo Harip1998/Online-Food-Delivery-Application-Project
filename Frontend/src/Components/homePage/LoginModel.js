@@ -1,26 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Link, Redirect, NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 import "./Home.css";
 import "./LoginSignUpModel.css";
 // import { Button } from "@material-ui/core";
 // import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
-  const { DelModel, open, close, Login } = props;
+  const {open, close} = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [islogin, setIslogin] = useState(false);
   const [signupflag, setSignupFlag] = useState(false);
 
-  const sendProceed = () => {
-    DelModel({
-      proceed: true,
-    });
-  };
-
+  
   /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
@@ -53,8 +47,6 @@ function LoginModel(props) {
 
 
   /* ----- Function to login ----- */
-  const [isRegister, setisRegister] = useState(false);
-  const [successmsg, setSuccessmsg] = useState("");
 
   const login = () => {
     fetch("http://localhost:4001/users/login", {
@@ -72,7 +64,6 @@ function LoginModel(props) {
         localStorage.setItem("auth", JSON.stringify(res.token));
         console.log("Resss", res);
         if (res.success) {
-          setSuccessmsg(res.message);
           alert(res.message);
         }
       });
