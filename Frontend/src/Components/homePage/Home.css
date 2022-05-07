@@ -1,6 +1,6 @@
 /*----------Home File---------*/
 .home-page-main-container {
-  background-image: url(../../assets/images/image1.jpg);
+  background-image: url(../../assets/images/backgroundImg.jpg);
   width: 100vmax;
   height: 100vh;
 }
@@ -8,8 +8,7 @@
   color: white;
 }
 .login-btn {
-  color: white;
-  /* margin-left: 50em; */
+  color: rgb(48, 45, 45);
   font-size: x-large;
 }
 .home-page-searchbar-container {
@@ -24,7 +23,7 @@
 }
 .search-bar-title {
   text-align: center;
-  color: white;
+  color: rgb(77, 74, 74);
   margin-top: 0.5em;
 }
 .home-page-searchbar {
