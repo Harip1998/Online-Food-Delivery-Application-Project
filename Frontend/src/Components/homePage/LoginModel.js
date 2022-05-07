@@ -91,7 +91,7 @@ function LoginModel(props) {
 
   return (
     <div>
-      <StyledDialog open={open} onClose={close}>
+      <StyledDialog open={open} onClose={()=>{close(); setSignupFlag(!signupflag)}}>
         {signupflag ? (
           <div className="signUp-login-form">
             <form onSubmit={singupHandleSubmit}>
