@@ -8,7 +8,7 @@ import FoodReducer from "../../Reducers/FoodReducer";
 
 function Restaurant(props) {
   let userDetails = JSON.parse(localStorage.getItem("userDetails"))
-  console.log("userDetails",userDetails.name);
+  // console.log("userDetails",userDetails.name);
 
   const removeStorage = () => {
     localStorage.clear();
@@ -38,7 +38,7 @@ function Restaurant(props) {
           </div>
           <div className="col-sm-1">
             <div className="navbar-header">
-              <p className="user">{userDetails.name}</p>
+              {/* <p className="user">{userDetails.name}</p> */}
             </div>
           </div>
           <div className="col-sm-1">
