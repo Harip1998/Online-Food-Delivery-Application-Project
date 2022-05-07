@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./App.css";
-import RestaurantNav from "./Components/restaurantPage/RestaurantNav";
-import HomeNav from "./Components/homePage/HomeNav";
+import RestaurantNav from "./components/restaurantPage/RestaurantNav";
+import HomeNav from "./components/homePage/HomeNav";
 
 function App (){
     return (

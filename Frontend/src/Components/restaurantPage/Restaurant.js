@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./RestaurantNav.css";
 import Search from "./Search";
-import FoodReducer from "../../Reducers/FoodReducer";
+import FoodReducer from "../../reducers/FoodReducer";
 
 function Restaurant(props) {
   const removeStorage = () => {

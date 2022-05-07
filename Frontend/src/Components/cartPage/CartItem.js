@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { connect } from "react-redux";
 import "../homePage/Home.css";
-import { updateCartQuantity, removeFromCart} from "../../Store/Actions/cartAction";
+import { updateCartQuantity, removeFromCart} from "../../store/Actions/cartAction";
 
 function CartItem(props) {
   const { product } = props;

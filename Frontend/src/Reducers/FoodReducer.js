@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import FoodItems from "../Components/restaurantPage/FoodItems";
+import FoodItems from "../components/restaurantPage/FoodItems";
 import "bootstrap/dist/css/bootstrap.css";
 import { connect } from "react-redux";
-import { addToCart } from "../Store/Actions/cartAction";
+import { addToCart } from "../store/Actions/cartAction";
 import axios from "axios";
 import { Spinner } from "reactstrap";
 import "./Reducer.css";
