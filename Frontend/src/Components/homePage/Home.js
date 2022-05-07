@@ -29,7 +29,7 @@ function Home() {
                 onClick={() => {
                   setdeletemodal(true);
                 }}
-                className="login-btn"
+                className="signUp-login-btn"
               >
                 Log in
               </p>
@@ -42,7 +42,7 @@ function Home() {
                   setdeletemodal(true);
                   setopenRegModel(true);
                 }}
-                className="login-btn"
+                className="signUp-login-btn"
               >
                 Sign up
               </p>
@@ -58,12 +58,12 @@ function Home() {
           role="presentation"
         />
       </div>
-      <h3 className="search-bar-title">Search food Items or City</h3>
       <div className="home-page-searchbar">
+        <h3 className="search-bar-title">Search food Items or City</h3>
         <input
           type="text"
           placeholder="Search for restuarant or dish"
-          className="search-bar"
+          className="search-bar-input-field"
         />
         <Button
           style={{

@@ -14,9 +14,9 @@ function LoginModel(props) {
   const [password2, setPassword2] = useState("");
   const [signupflag, setSignupFlag] = useState(false);
 
-  useEffect(()=>{
-    setSignupFlag(OpenRegModel)
-  },[OpenRegModel])
+  useEffect(() => {
+    setSignupFlag(OpenRegModel);
+  }, [OpenRegModel]);
   /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
@@ -91,9 +91,15 @@ function LoginModel(props) {
 
   return (
     <div>
-      <StyledDialog open={open} onClose={()=>{close(); setSignupFlag(!signupflag)}}>
+      <StyledDialog
+        open={open}
+        onClose={() => {
+          close();
+          setSignupFlag(!signupflag);
+        }}
+      >
         {signupflag ? (
-          <div className="signUp-login-form">
+          <div className="signUp-form">
             <form onSubmit={singupHandleSubmit}>
               <h3 className="head">SignUp</h3>
               <div className="form-group">
@@ -157,7 +163,7 @@ function LoginModel(props) {
             </form>
           </div>
         ) : (
-          <div className="signUp-login-form">
+          <div className="login-form">
             <form onSubmit={handleSubmit}>
               <h3 className="head">Log in</h3>
               <div className="form-group">
@@ -195,7 +201,6 @@ function LoginModel(props) {
               </div>
 
               <Link to="/restaurant-page">
-                {" "}
                 <button
                   type="submit"
                   disabled={!isEnabled}
@@ -205,12 +210,14 @@ function LoginModel(props) {
                   <span className="navbar-brand">Login</span>
                 </button>
               </Link>
-              <p>Don't have account?</p>
-              <Link onClick={() => setSignupFlag(true)}>
-                <p className="navbar-brand" id="singup-login-btn">
-                  SignUp
-                </p>
-              </Link>
+              <div className="msg-signup-btn">
+                <p>Don't have account?</p>
+                <Link onClick={() => setSignupFlag(true)}>
+                  <p className="navbar-brand" id="singup-login-btn">
+                    SignUp
+                  </p>
+                </Link>
+              </div>
             </form>
           </div>
         )}

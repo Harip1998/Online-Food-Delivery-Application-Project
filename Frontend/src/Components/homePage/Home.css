@@ -4,12 +4,12 @@
   width: 100vmax;
   height: 100vh;
 }
-.signup {
-  color: white;
-}
-.login-btn {
+.signUp-login-btn {
   color: rgb(48, 45, 45);
   font-size: x-large;
+}
+.signUp-login-btn:hover{
+  color: rgb(238, 18, 194);
 }
 .home-page-searchbar-container {
   margin-top: 5.5em;
@@ -30,12 +30,13 @@
   text-align: center;
   margin-top: 1.5em;
 }
-.search-bar {
+.search-bar-input-field {
   width: 30em;
   height: 2.5em;
   background-color: white;
   border: 1px solid;
   border-radius: 5px;
+  padding-left: 1em;
 }
 .srch-btn {
   background-color: red;
@@ -68,22 +69,7 @@
   margin-top: 1%;
   gap: 10px;
 }
-#singup-login-btn{
-  margin-top: -.4em;
-  color: black;
-  text-decoration: none;
-  font-size: 1.3rem;
-  background-color: none;
-}
-.msg-signup-btn{
-  width: 100%;
-  align-content: flex-end;
-  padding-left: 30%;
-  display: flex;
-  flex-direction: row;
-  margin-top: 3%;
-  gap: 5px;
-}
+
 /*----------Cart_Item File---------------*/
 #cart_det {
   margin-top: 10px;
