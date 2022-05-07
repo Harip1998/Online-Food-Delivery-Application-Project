@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import "./Home.css";
 import { Button } from "@material-ui/core";
-import LoginModel from "./LoginModel";
+import LoginSignUpModel from "./LoginSignUpModel";
 
 function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
@@ -12,11 +12,6 @@ function Home() {
   const clickedOnProceed = () => {
     setdeletemodal(false);
   };
-  // useEffect(() => {
-  //   if (login) {
-  //     return <Redirect to="/restaurant-page" />;
-  //   }
-  // }, [login]);
 
   return (
     <div className="home-page-main-container">
@@ -77,7 +72,7 @@ function Home() {
           Search
         </Button>
       </div>
-      <LoginModel
+      <LoginSignUpModel
         open={deletemodal}
         OpenRegModel={openRegModel}
         DelModel={clickedOnProceed}
