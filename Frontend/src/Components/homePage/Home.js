@@ -8,6 +8,7 @@ import LoginModel from "./LoginModel";
 
 function Home() {
   const [deletemodal, setdeletemodal] = useState(false);
+  const [openRegModel, setopenRegModel] = useState(false);
   const clickedOnProceed = () => {
     setdeletemodal(false);
   };
@@ -21,11 +22,29 @@ function Home() {
     <div className="home-page-main-container">
       <div>
         <Grid container spacing={0}>
-          <Grid item sx={12} sm={10}></Grid>
+          <Grid item sx={12} sm={9}></Grid>
+          <Grid item sx={12} sm={1}>
+            <Link className="navbar-brand">
+              <p
+                onClick={() => {
+                  setdeletemodal(true);
+                }}
+                className="login-btn"
+              >
+                Log in
+              </p>
+            </Link>
+          </Grid>
           <Grid item sx={12} sm={2}>
             <Link className="navbar-brand">
-              <p onClick={() => setdeletemodal(true)} className="login-btn">
-                Log in
+              <p
+                onClick={() => {
+                  setdeletemodal(true);
+                  setopenRegModel(true);
+                }}
+                className="login-btn"
+              >
+                Sign up
               </p>
             </Link>
           </Grid>
@@ -60,6 +79,7 @@ function Home() {
       </div>
       <LoginModel
         open={deletemodal}
+        OpenRegModel={openRegModel}
         DelModel={clickedOnProceed}
         close={() => {
           setdeletemodal(false);

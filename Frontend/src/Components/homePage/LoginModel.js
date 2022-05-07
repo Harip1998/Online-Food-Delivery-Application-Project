@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Home.css";
 import "./LoginSignUpModel.css";
 // import { Button } from "@material-ui/core";
 // import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
-  const {open, close} = props;
+  const { open, close, OpenRegModel } = props;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [signupflag, setSignupFlag] = useState(false);
 
-  
+  useEffect(()=>{
+    setSignupFlag(OpenRegModel)
+  },[OpenRegModel])
   /* ----- Function to register a new user ----- */
   const register = () => {
     fetch("http://localhost:4001/users/register", {
@@ -44,7 +46,6 @@ function LoginModel(props) {
   };
 
   const signupisEnabled = signupCanBeSubmitted();
-
 
   /* ----- Function to login ----- */
 
