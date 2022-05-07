@@ -16,10 +16,21 @@
   font-size: 1.3rem;
   background-color: none;
 }
-#singup-login-btn:hover{
+#singup-login-btn:hover {
   color: rgb(31, 174, 217);
 }
-.msg-signup-btn{
+.signUp-login-submit-btn {
+  width: 100%;
+  background-color: rgb(78, 75, 75);
+  color: white;
+  border: none;
+  border-radius: 0.5em;
+  margin-top: 1em;
+}
+.signUp-login-submit-btn:hover {
+  background-color: rgb(188, 89, 66);
+}
+.msg-signup-btn {
   width: 100%;
   align-content: flex-end;
   padding-left: 30%;

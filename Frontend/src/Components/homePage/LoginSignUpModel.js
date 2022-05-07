@@ -144,7 +144,7 @@ function LoginModel(props) {
               <button
                 type="submit"
                 disabled={!signupisEnabled}
-                className="btn btn-dark btn-lg btn-block"
+                className="signUp-login-submit-btn"
                 onClick={() => {
                   register();
                   setSignupFlag(false);
@@ -204,7 +204,7 @@ function LoginModel(props) {
                 <button
                   type="submit"
                   disabled={!isEnabled}
-                  className="btn btn-dark btn-lg btn-block"
+                  className="signUp-login-submit-btn"
                   onClick={() => login()}
                 >
                   <span className="navbar-brand">Login</span>
