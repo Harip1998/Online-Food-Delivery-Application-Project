@@ -52,7 +52,6 @@ function LoginModel(props) {
   const signupisEnabled = signupCanBeSubmitted();
 
   /* ----- Function to login ----- */
-
   const userLogin = () => {
     fetch("http://localhost:4001/users/login", {
       method: "POST",
@@ -66,6 +65,7 @@ function LoginModel(props) {
       }),
     }).then((result) => {
       result.json().then((res) => {
+        localStorage.setItem("auth", res.token);
         setIsloginMsg(res.message);
       });
     });
@@ -90,12 +90,15 @@ function LoginModel(props) {
         padding: "3em",
         color: "#716add",
       }).then(() => {
-        // return <Redirect to="/restaurant-page" />;
+        return <Redirect to="/restaurant-page" />;
       });
     }
   }, [isloginMsg]);
   const isEnabled = canBeSubmitted();
 
+  // if (isloginMsg !== "") {
+  //   <Redirect to="/restaurant-page" />;
+  // }
   return (
     <div>
       <StyledDialog
