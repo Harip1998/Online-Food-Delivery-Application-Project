@@ -19,9 +19,9 @@ function LoginModel(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [islogin, setIslogin] = useState(false);
   const [isloginMsg, setIsloginMsg] = useState("");
   console.log("isloginMsg", isloginMsg);
+
   /* ----- Function to register a new user ----- */
   const userRegistration = () => {
     fetch("http://localhost:4001/useuserRs/register", {
@@ -66,12 +66,7 @@ function LoginModel(props) {
       }),
     }).then((result) => {
       result.json().then((res) => {
-        // localStorage.setItem("auth", JSON.stringify(res.token));
-        console.log("Resss", res);
-        //if (res.success) {
-        setIslogin(res.success);
         setIsloginMsg(res.message);
-        // }
       });
     });
   };
@@ -86,21 +81,16 @@ function LoginModel(props) {
     return email.length > 5 && password.length > 4;
   };
 
-  // var auth = JSON.parse(localStorage.getItem("auth"));
-  // if (islogin) {
-  //   return <Redirect to="/restaurant-page" />;
-  // }
   useEffect(() => {
     if (isloginMsg !== "") {
       close();
       Swal.fire({
-        position: "center",
-        icon: "success",
         title: isloginMsg,
-        showConfirmButton: false,
-        timer: 3500,
+        width: 500,
+        padding: "3em",
+        color: "#716add",
       }).then(() => {
-        return <Redirect to="/restaurant-page" />;
+        // return <Redirect to="/restaurant-page" />;
       });
     }
   }, [isloginMsg]);
