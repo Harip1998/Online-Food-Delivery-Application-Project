@@ -20,8 +20,8 @@ function LoginModel(props) {
   const [password2, setPassword2] = useState("");
 
   /* ----- Function to register a new user ----- */
-  const register = () => {
-    fetch("http://localhost:4001/users/register", {
+  const userRegistration = () => {
+    fetch("http://localhost:4001/useuserRs/register", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -40,7 +40,6 @@ function LoginModel(props) {
       e.preventDefault();
       return;
     }
-    alert(`Signed up with email: ${email} password: ${password}`);
   };
 
   const signupCanBeSubmitted = () => {
@@ -51,7 +50,7 @@ function LoginModel(props) {
 
   /* ----- Function to login ----- */
 
-  const login = () => {
+  const userLogin = () => {
     fetch("http://localhost:4001/users/login", {
       method: "POST",
       headers: {
@@ -77,7 +76,6 @@ function LoginModel(props) {
       evt.preventDefault();
       return;
     }
-    alert(`Signed up with email: ${email} password: ${password}`);
   };
 
   const canBeSubmitted = () => {
@@ -86,7 +84,6 @@ function LoginModel(props) {
 
   // var auth = JSON.parse(localStorage.getItem("auth"));
   // if (islogin) {
-  //   alert(successmsg);
   //   return <Redirect to="/restaurant-page" />;
   // }
   const isEnabled = canBeSubmitted();
@@ -160,7 +157,7 @@ function LoginModel(props) {
                   disabled={!signupisEnabled}
                   className="signUp-login-submit-btn"
                   onClick={() => {
-                    register();
+                    userRegistration();
                     SetopenLoginModel(true);
                     SetopenRegModel(false);
                   }}
@@ -228,7 +225,7 @@ function LoginModel(props) {
                     type="submit"
                     disabled={!isEnabled}
                     className="signUp-login-submit-btn"
-                    onClick={() => login()}
+                    onClick={() => userLogin()}
                   >
                     <span className="navbar-brand">Login</span>
                   </button>
