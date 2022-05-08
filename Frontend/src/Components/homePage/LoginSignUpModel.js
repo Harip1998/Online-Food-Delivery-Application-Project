@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import Swal from "sweetalert2";
 import "./Home.css";
 import "./LoginSignUpModel.css";
 import { ImCross } from "react-icons/im";
@@ -18,7 +19,9 @@ function LoginModel(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-
+  const [islogin, setIslogin] = useState(false);
+  const [isloginMsg, setIsloginMsg] = useState("");
+  console.log("isloginMsg", isloginMsg);
   /* ----- Function to register a new user ----- */
   const userRegistration = () => {
     fetch("http://localhost:4001/useuserRs/register", {
@@ -63,11 +66,12 @@ function LoginModel(props) {
       }),
     }).then((result) => {
       result.json().then((res) => {
-        localStorage.setItem("auth", JSON.stringify(res.token));
+        // localStorage.setItem("auth", JSON.stringify(res.token));
         console.log("Resss", res);
-        if (res.success) {
-          alert(res.message);
-        }
+        //if (res.success) {
+        setIslogin(res.success);
+        setIsloginMsg(res.message);
+        // }
       });
     });
   };
@@ -86,6 +90,20 @@ function LoginModel(props) {
   // if (islogin) {
   //   return <Redirect to="/restaurant-page" />;
   // }
+  useEffect(() => {
+    if (isloginMsg !== "") {
+      close();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: isloginMsg,
+        showConfirmButton: false,
+        timer: 3500,
+      }).then(() => {
+        return <Redirect to="/restaurant-page" />;
+      });
+    }
+  }, [isloginMsg]);
   const isEnabled = canBeSubmitted();
 
   return (
@@ -220,7 +238,7 @@ function LoginModel(props) {
                   </div>
                 </div>
 
-                <Link to="/restaurant-page">
+                <Link>
                   <button
                     type="submit"
                     disabled={!isEnabled}
