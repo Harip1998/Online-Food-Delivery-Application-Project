@@ -24,7 +24,7 @@ function LoginModel(props) {
 
   /* ----- Function to register a new user ----- */
   const userRegistration = () => {
-    fetch("http://localhost:4001/useuserRs/register", {
+    fetch("http://localhost:4001/users/register", {
       method: "POST",
       headers: {
         Accept: "Application/json",
@@ -65,8 +65,12 @@ function LoginModel(props) {
       }),
     }).then((result) => {
       result.json().then((res) => {
-        localStorage.setItem("auth", res.token);
-        setIsloginMsg(res.message);
+        localStorage.setItem("auth", JSON.stringify(res.token));
+        console.log("Resss", res);
+        if (res.success) {
+          alert(res.message);
+          setIsloginMsg(res.message);
+        }
       });
     });
   };
@@ -80,10 +84,10 @@ function LoginModel(props) {
   const canBeSubmitted = () => {
     return email.length > 5 && password.length > 4;
   };
+  const isEnabled = canBeSubmitted();
 
   useEffect(() => {
     if (isloginMsg !== "") {
-      close();
       Swal.fire({
         title: isloginMsg,
         width: 500,
@@ -94,11 +98,7 @@ function LoginModel(props) {
       });
     }
   }, [isloginMsg]);
-  const isEnabled = canBeSubmitted();
 
-  // if (isloginMsg !== "") {
-  //   <Redirect to="/restaurant-page" />;
-  // }
   return (
     <div>
       <StyledDialog
@@ -231,7 +231,7 @@ function LoginModel(props) {
                   </div>
                 </div>
 
-                <Link>
+                <Link to="/restaurant-page">
                   <button
                     type="submit"
                     disabled={!isEnabled}
