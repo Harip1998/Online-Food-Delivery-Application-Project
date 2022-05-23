@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledDialog } from "./LoginModel.styled";
-import { Link, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 import "./Home.css";
 import "./LoginSignUpModel.css";
 import { ImCross } from "react-icons/im";
 
 function LoginModel(props) {
+  let history = useHistory();
   const {
     open,
     close,
@@ -68,8 +69,16 @@ function LoginModel(props) {
         localStorage.setItem("auth", JSON.stringify(res.token));
         console.log("Resss", res);
         if (res.success) {
-          alert(res.message);
           setIsloginMsg(res.message);
+          close();
+          Swal.fire({
+            title: res.message,
+            width: 500,
+            padding: "3em",
+            color: "#716add",
+          }).then(() => {
+            history.push("/restaurant-page");
+          });
         }
       });
     });
@@ -86,18 +95,19 @@ function LoginModel(props) {
   };
   const isEnabled = canBeSubmitted();
 
-  useEffect(() => {
-    if (isloginMsg !== "") {
-      Swal.fire({
-        title: isloginMsg,
-        width: 500,
-        padding: "3em",
-        color: "#716add",
-      }).then(() => {
-        return <Redirect to="/restaurant-page" />;
-      });
-    }
-  }, [isloginMsg]);
+  // useEffect(() => {
+  //   if (isloginMsg !== "") {
+  //     Swal.fire({
+  //       title: isloginMsg,
+  //       width: 500,
+  //       padding: "3em",
+  //       color: "#716add",
+  //     }).then(() => {
+  //       // return <Redirect to="/restaurant-page" />;
+  //       history.push("/restaurant-page")
+  //     });
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -231,7 +241,7 @@ function LoginModel(props) {
                   </div>
                 </div>
 
-                <Link to="/restaurant-page">
+                <Link>
                   <button
                     type="submit"
                     disabled={!isEnabled}
