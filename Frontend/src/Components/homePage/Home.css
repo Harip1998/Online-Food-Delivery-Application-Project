@@ -27,12 +27,16 @@
   color: rgb(77, 74, 74);
   margin-top: 0.5em;
 }
+
 .home-page-searchbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin-top: 1.5em;
 }
 .search-bar-input-field {
-  width: 30em;
+  width: 33%;
   height: 2.5em;
   background-color: white;
   border: 1px solid;
