@@ -31,6 +31,16 @@
   margin-top: 8px;
 }
 /*----------Restaurant File-----------*/
+#product-card {
+  border-radius: 20px;
+}
+#product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.img-wrap {
+  border-radius: 20px;
+}
 #cart_icon {
   width: 30px;
   height: 30px;
@@ -52,4 +62,14 @@
 /*------------Pizza File -----------------*/
 #item_name {
   color: red;
+  padding: 0.1em 0.3em;
+}
+.item_desc {
+  padding: 0.1em 0.3em;
+}
+.item_location {
+  padding: 0.1em 0.3em;
+}
+#item_price {
+  padding: 0.1em 0.3em;
 }
